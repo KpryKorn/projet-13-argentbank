@@ -3,8 +3,8 @@
 - [x] Init l'application React dans le dossier "client"
 - [ ] Intégrer les pages existantes de "designs" en routes React Router
   - [x] Page d'accueil
-  - [ ] Page de connexion
-  - [ ] Page de profil
+  - [x] Page de connexion
+  - [x] Page de profil
 - [ ] Gestion des states avec Redux
 
 ## Issues
