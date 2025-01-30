@@ -1,0 +1,15 @@
+## Init
+
+- [x] Init l'application React dans le dossier "client"
+- [ ] Intégrer les pages existantes de "designs" en routes React Router
+  - [ ] Page d'accueil
+  - [ ] Page de connexion
+  - [ ] Page de profil
+- [ ] Gestion des states avec Redux
+
+## Issues
+
+- [ ] (1) L'utilisateur peut voir la page d'accueil
+- [ ] (2) Connexion
+- [ ] (3) Déconnexion
+- [ ] (4) Uniquement possible de voir son propre profil + le mettre à jour
