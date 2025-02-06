@@ -23,6 +23,11 @@ const router = createBrowserRouter([
   },
 ]);
 
+console.log("Initial state:", store.getState());
+store.subscribe(() => {
+  console.log("State updated:", store.getState());
+});
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
