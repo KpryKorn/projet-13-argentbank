@@ -5,6 +5,8 @@ import App from "./pages/App.tsx";
 import SignIn from "./pages/SignIn.tsx";
 import User from "./pages/User.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { Provider } from "react-redux";
+import { store } from "./services/store.ts";
 
 const router = createBrowserRouter([
   {
@@ -12,17 +14,19 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "sign-in",
+    path: "login",
     element: <SignIn />,
   },
   {
-    path: "/user",
+    path: "/profile",
     element: <User />,
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
