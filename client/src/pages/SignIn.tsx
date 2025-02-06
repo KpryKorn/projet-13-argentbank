@@ -30,8 +30,9 @@ export default function SignIn() {
     try {
       const data = await login(email, password);
       dispatch(loginSuccess(data.body.token));
-
       navigate("/profile");
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       dispatch(loginFailure(error.message));
       setErrorMessage(error.message);
