@@ -1,26 +1,82 @@
+import { Link, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../services/store";
 import argentBankLogo from "../img/argentBankLogo.png";
+import { useEffect, useState } from "react";
+import { logout } from "../services/authSlice";
+
+interface ProfileData {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export default function User() {
+  const token = useSelector((state: RootState) => state.auth.token);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [userData, setUserData] = useState<ProfileData>();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    const verifyToken = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:3001/api/v1/user/profile",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          dispatch(logout());
+          navigate("/login");
+        }
+
+        const data = await response.json();
+        setUserData(data.body);
+        return data;
+      } catch (error) {
+        console.error("Error:", error);
+        dispatch(logout());
+        navigate("/login");
+      }
+    };
+
+    verifyToken();
+  }, [token, dispatch, navigate]);
+
   return (
     <>
       <nav className="main-nav">
-        <a className="main-nav-logo" href="/">
+        <Link className="main-nav-logo" to="/">
           <img
             className="main-nav-logo-image"
             src={argentBankLogo}
             alt="Argent Bank Logo"
           />
           <h1 className="sr-only">Argent Bank</h1>
-        </a>
+        </Link>
         <div>
-          <a className="main-nav-item" href="/user">
+          <Link className="main-nav-item" to="/profile">
             <i className="fa fa-user-circle"></i>
-            Tony
-          </a>
-          <a className="main-nav-item" href="/">
+            {userData && `${userData.firstName} ${userData.lastName}`}
+          </Link>
+          <Link className="main-nav-item" to="/">
             <i className="fa fa-sign-out"></i>
             Sign Out
-          </a>
+          </Link>
         </div>
       </nav>
       <main className="main bg-dark">
@@ -28,7 +84,7 @@ export default function User() {
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {userData && `${userData.firstName} ${userData.lastName} !`}
           </h1>
           <button className="edit-button">Edit Name</button>
         </div>
