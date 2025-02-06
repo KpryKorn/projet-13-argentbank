@@ -6,14 +6,16 @@
   - [x] Page d'accueil
   - [x] Page de connexion
   - [x] Page de profil
-- [ ] Gestion des states avec Redux
+- [x] Gestion des states avec Redux
 - [x] Ajuster le responsive (marge page d'accueil)
-- [ ] Gestion des messages d'erreur
+- [x] Gestion des messages d'erreur
 - [ ] Créer fichier Swagger
 
 ## Issues
 
 - [x] (1) L'utilisateur peut voir la page d'accueil
-- [ ] (2) Connexion via Token JWT (POST)
+- [x] (2) Connexion via credentials
+  - [x] rediriger vers "/profile" après validation des credentials
+  - [ ] s'authentifier via "/user/profile" avec le token JWT renvoyé par l'API
 - [ ] (3) Déconnexion -> il est impossible d'accéder à "/user" en étant déconnecté
 - [ ] (4) Uniquement possible de voir son propre profil + le mettre à jour
