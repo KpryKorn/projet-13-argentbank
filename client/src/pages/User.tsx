@@ -20,6 +20,11 @@ export default function User() {
   const dispatch = useDispatch();
   const [userData, setUserData] = useState<ProfileData>();
 
+  const handleSignOut = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
+
   useEffect(() => {
     if (!token) {
       navigate("/login");
@@ -73,10 +78,13 @@ export default function User() {
             <i className="fa fa-user-circle"></i>
             {userData && `${userData.firstName} ${userData.lastName}`}
           </Link>
-          <Link className="main-nav-item" to="/">
+          <button
+            className="main-nav-item cursor-pointer"
+            onClick={handleSignOut}
+          >
             <i className="fa fa-sign-out"></i>
             Sign Out
-          </Link>
+          </button>
         </div>
       </nav>
       <main className="main bg-dark">
