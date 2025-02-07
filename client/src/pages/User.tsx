@@ -22,12 +22,12 @@ export default function User() {
 
   const handleSignOut = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {
     if (!token) {
-      navigate("/login");
+      navigate("/");
       return;
     }
 
