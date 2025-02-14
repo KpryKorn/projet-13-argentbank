@@ -19,5 +19,5 @@
   - [x] s'authentifier via "api/user/profile" avec le token JWT renvoyé par l'API
   - [x] protéger la page "/profile" avec auth JWT
 - [x] (3) Déconnexion
-- [ ] (4) Uniquement possible de voir son propre profil
-  - [ ] Mettre à jour les informations de son profil via les inputs
+- [x] (4) Uniquement possible de voir son propre profil
+  - [x] Mettre à jour les informations de son profil via les inputs
