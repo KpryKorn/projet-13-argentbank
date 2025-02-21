@@ -342,6 +342,15 @@ definitions:
       description:
         type: string
         description: Short description of the transaction
+      transactionType:
+        type: string
+        description: The type of the transaction (electronic..)
+      category:
+        type: string
+        description: The category of the transaction (food..)
+      notes:
+        type: string
+        description: Allows user to add notes
   TransactionsResponse:
     type: object
     properties:
