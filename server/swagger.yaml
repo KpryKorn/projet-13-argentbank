@@ -201,45 +201,6 @@ paths:
           description: Transaction not found
         "500":
           description: Internal Server Error
-    put:
-      security:
-        - Bearer: []
-      tags:
-        - Transaction Module
-      summary: Update a transaction
-      description: Modify details of an existing transaction
-      parameters:
-        - in: header
-          type: string
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-        - in: path
-          name: transactionId
-          required: true
-          type: string
-          description: ID of the transaction
-        - in: body
-          name: body
-          description: Updated transaction details
-          required: true
-          schema:
-            $ref: "#/definitions/Transaction"
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: Transaction updated successfully
-          schema:
-            $ref: "#/definitions/ApiResponse"
-        "400":
-          description: Invalid data
-        "401":
-          description: Unauthorized
-        "404":
-          description: Transaction not found
-        "500":
-          description: Internal Server Error
     delete:
       security:
         - Bearer: []
@@ -263,6 +224,94 @@ paths:
       responses:
         "200":
           description: Transaction deleted successfully
+        "401":
+          description: Unauthorized
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal Server Error
+  /transactions/{transactionId}/category:
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Update category of a transaction
+      description: Modify category of an existing transaction. This is a PATCH because we partially modify the existing data.
+      parameters:
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: ID of the transaction
+        - in: body
+          name: body
+          description: Updated transaction details
+          required: true
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+                description: The category of the transaction (food..)
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transaction updated successfully
+          schema:
+            $ref: "#/definitions/Transaction"
+        "400":
+          description: Invalid data
+        "401":
+          description: Unauthorized
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal Server Error
+  /transactions/{transactionId}/notes:
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Update notes of a transaction
+      description: Modify notes of an existing transaction. This is a PATCH because we partially modify the existing data.
+      parameters:
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: ID of the transaction
+        - in: body
+          name: body
+          description: Updated transaction details
+          required: true
+          schema:
+            type: object
+            properties:
+              notes:
+                type: string
+                description: The notes of the transaction (food..)
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transaction updated successfully
+          schema:
+            $ref: "#/definitions/Transaction"
+        "400":
+          description: Invalid data
         "401":
           description: Unauthorized
         "404":
